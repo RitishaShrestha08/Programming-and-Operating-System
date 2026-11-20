@@ -1,19 +1,24 @@
-name: Run Memory Layout Program
+
+name: Run OS Practical Programs
 
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
-  build:
+  build-and-run:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Build Docker Image
-        run: docker build -t memory-layout .
+        run: docker build -t os-practicals .
 
       - name: Run Memory Layout Program
-        run: docker run --rm memory-layout
+        run: docker run --rm os-practicals ./memory
+
+      - name: Run Process Information Program
+        run: docker run --rm os-practicals ./procinfo
