@@ -1,0 +1,21 @@
+
+name: Run Memory Layout Program
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: docker build -t memory-layout .
+
+      - name: Run Docker Container
+        run: docker run --rm memory-layout
